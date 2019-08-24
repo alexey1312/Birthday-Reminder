@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84BF9D0423119AF60089FF55 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF9D0323119AF60089FF55 /* MainTableViewController.swift */; };
 		84C5BBBD23114BF00038B011 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */; };
 		84CF00C023111BB200AD8667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF00BF23111BB200AD8667 /* AppDelegate.swift */; };
 		84CF00C223111BB200AD8667 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF00C123111BB200AD8667 /* SceneDelegate.swift */; };
@@ -14,11 +15,11 @@
 		84CF00C923111BB200AD8667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CF00C723111BB200AD8667 /* Main.storyboard */; };
 		84CF00CB23111BB400AD8667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84CF00CA23111BB400AD8667 /* Assets.xcassets */; };
 		84CF00CE23111BB400AD8667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CF00CC23111BB400AD8667 /* LaunchScreen.storyboard */; };
-		84CF00D623112E8F00AD8667 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF00D523112E8F00AD8667 /* TableViewController.swift */; };
 		84CF00D82311385600AD8667 /* BirthdayBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF00D72311385600AD8667 /* BirthdayBase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84BF9D0323119AF60089FF55 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		84CF00BC23111BB200AD8667 /* Birthday Reminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Birthday Reminder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CF00BF23111BB200AD8667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +29,6 @@
 		84CF00CA23111BB400AD8667 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84CF00CD23111BB400AD8667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84CF00CF23111BB400AD8667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84CF00D523112E8F00AD8667 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		84CF00D72311385600AD8667 /* BirthdayBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayBase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,7 +65,7 @@
 				84CF00BF23111BB200AD8667 /* AppDelegate.swift */,
 				84CF00C123111BB200AD8667 /* SceneDelegate.swift */,
 				84CF00D72311385600AD8667 /* BirthdayBase.swift */,
-				84CF00D523112E8F00AD8667 /* TableViewController.swift */,
+				84BF9D0323119AF60089FF55 /* MainTableViewController.swift */,
 				84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */,
 				84CF00C323111BB200AD8667 /* addBirthdayViewController.swift */,
 				84CF00C723111BB200AD8667 /* Main.storyboard */,
@@ -148,10 +148,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				84C5BBBD23114BF00038B011 /* CustomTableViewCell.swift in Sources */,
-				84CF00D623112E8F00AD8667 /* TableViewController.swift in Sources */,
 				84CF00C423111BB200AD8667 /* addBirthdayViewController.swift in Sources */,
 				84CF00D82311385600AD8667 /* BirthdayBase.swift in Sources */,
 				84CF00C023111BB200AD8667 /* AppDelegate.swift in Sources */,
+				84BF9D0423119AF60089FF55 /* MainTableViewController.swift in Sources */,
 				84CF00C223111BB200AD8667 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
