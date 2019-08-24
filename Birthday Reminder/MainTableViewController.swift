@@ -77,18 +77,18 @@ class MainTableViewController: UITableViewController {
                return deleteAction
        }
 
-           //Добавление свайпа с лева на право для релактирования ячеек
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-           _ = usersBirthday[indexPath.row]
-           let action = UIContextualAction(style: .normal, title: "Edit") {_,_,_ in
-       
-       }
-           action.backgroundColor = .orange
-           let editAction = UISwipeActionsConfiguration.init(actions: [action])
-
-           return editAction
-   }
+//           //Добавление свайпа с лева на право для релактирования ячеек
+//    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//
+//           _ = usersBirthday[indexPath.row]
+//           let action = UIContextualAction(style: .normal, title: "Edit") {_,_,_ in
+//       
+//       }
+//           action.backgroundColor = .orange
+//           let editAction = UISwipeActionsConfiguration.init(actions: [action])
+//
+//           return editAction
+//   }
 
     /*
     // MARK: - Navigation
