@@ -6,18 +6,17 @@
 //  Copyright © 2019 Aleksei Kakoulin. All rights reserved.
 //
 
+import RealmSwift
 import UIKit
 
 class MainTableViewController: UITableViewController {
-     
     
-    var testBases = [Birthday(userFirstName: "Aleksei",
-                              userLastName: "Kakoulin",
-                              userBirthdate: "Tuesday 1991-12-17",
-                              userImageData: #imageLiteral(resourceName: "suit"))]
+    var usersBirthday: Results<Birthday>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usersBirthday = realm.objects(Birthday.self)
 
     }
     
@@ -25,60 +24,71 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return testBases.isEmpty ? 0: testBases.count
+        return usersBirthday.isEmpty ? 0: usersBirthday.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
-        let testBase = testBases[indexPath.row]
+        let userBirthday = usersBirthday[indexPath.row]
+        let userBirthdayDate = usersBirthday[indexPath.row].userBirthDate
+
+        //Конвертация даты
+        let dateForamaterDate = DateFormatter()
+        let dateFormatreWeekDay = DateFormatter()
+
+        dateForamaterDate.dateFormat = "yyyy-MM-dd"
+        dateFormatreWeekDay.dateFormat = "EEEE"
+        
+        let dateValueDate = dateForamaterDate.string(from: userBirthdayDate!)
+        let dateValueWeekDay = dateFormatreWeekDay.string(from: userBirthdayDate!)
+         
+        let capitalizedDate = dateValueDate.capitalized
+        let capitalizedWeekday = dateValueWeekDay.capitalized
+        let fullDate = "\(capitalizedWeekday) \(capitalizedDate)"
+
 
         
-        cell.labelName.text = testBase.userfullName
-        cell.labelDate.text = testBase.userBirthdate
-
-        cell.PhotoUserImage.image = testBase.userImageData
+        cell.labelName.text = userBirthday.userfullName
+        cell.labelDate.text = fullDate
+        
+        cell.PhotoUserImage.image = UIImage(data: userBirthday.userImageData!)
         cell.PhotoUserImage.layer.cornerRadius = cell.frame.size.height / 3
-//        cell.userImageData.image = UIImage(data: .imageData!)
-        
 
         return cell
     }
 
-    
-    /*
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-    */
+       
+       
+       //MARK: Table view delegate
+       
+       //Добавление свайпа с права на лево для удаления ячеек
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+               
+               let userBirthday = usersBirthday[indexPath.row]
+               let action = UIContextualAction(style: .destructive, title: "Delete") {_,_,_ in
+                   
+                   StorageManager.deleteObject(userBirthday)
+                   tableView.deleteRows(at: [indexPath], with: .automatic)
+           }
+               let deleteAction = UISwipeActionsConfiguration.init(actions: [action])
+               
+               return deleteAction
+       }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+           //Добавление свайпа с лева на право для релактирования ячеек
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
-    }
-    */
+           _ = usersBirthday[indexPath.row]
+           let action = UIContextualAction(style: .normal, title: "Edit") {_,_,_ in
+       
+       }
+           action.backgroundColor = .orange
+           let editAction = UISwipeActionsConfiguration.init(actions: [action])
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+           return editAction
+   }
 
     /*
     // MARK: - Navigation
@@ -93,9 +103,7 @@ class MainTableViewController: UITableViewController {
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         
         guard let newBirthdayVC = segue.source as? addBirthdayViewController else { return }
-        
         newBirthdayVC.saveBirtghdayUser()
-        testBases.append(newBirthdayVC.newBitrhdayUser!)
         tableView.reloadData()
     }
     

@@ -10,8 +10,10 @@ import UIKit
 
 class addBirthdayViewController: UITableViewController {
     
+    var currentBirthday: Birthday?
     var imageIsChange = false
-    var newBitrhdayUser: Birthday?
+    
+    @IBOutlet weak var datePickerLog: UIDatePicker!
 
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var userPhotoImage: UIImageView!
@@ -20,10 +22,9 @@ class addBirthdayViewController: UITableViewController {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var labelDateBirthday: UILabel!
     
-    
-    
-    
+
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
         
@@ -99,35 +100,27 @@ class addBirthdayViewController: UITableViewController {
     func saveBirtghdayUser() {
         
         let image = imageIsChange ? userPhotoImage.image : #imageLiteral(resourceName: "shirt")
+        //Конвертация image в тип Data
+        let imageData = image?.pngData()
         
-        newBitrhdayUser = Birthday(userFirstName: firstName.text,
+        let newBitrhdayUser = Birthday(userFirstName: firstName.text,
                                    userLastName: lastName.text,
-                                   userBirthdate: labelDateBirthday.text,
-                                   userImageData: image)
+                                   userBirthDate: datePickerLog.date,
+                                   userImageData: imageData)
+        
+        //Добавление новых значений в базу или замена предыдущих
+        if currentBirthday != nil {
+            try! realm.write {
+                currentBirthday?.userFirstName = newBitrhdayUser.userFirstName
+                currentBirthday?.userLastName = newBitrhdayUser.userLastName
+                currentBirthday?.userBirthDate = newBitrhdayUser.userBirthDate
+                currentBirthday?.userImageData = newBitrhdayUser.userImageData
+            }
+        } else {
+            StorageManager.saveObject(newBitrhdayUser)
+        }
     }
 }
-
-//    //Конвертация image в тип Data
-//    let imageData = image?.pngData()
-//
-//    let newPlace = Place(name: placeName.text!,
-//                         location: placeLocation.text!,
-//                         type: placeType.text!,
-//                         imageData: imageData)
-//
-//    //Добавление новых значений в базу или замена предыдущих
-//    if currentPlace != nil {
-//        try! realm.write {
-//            currentPlace?.name = newPlace.name
-//            currentPlace?.location = newPlace.location
-//            currentPlace?.type = newPlace.type
-//            currentPlace?.imageData = newPlace.imageData
-//        }
-//    } else {
-//        StorageManager.saveObject(newPlace)
-//    }
-//
-//}
 
 //MARK: Text field delegate
 

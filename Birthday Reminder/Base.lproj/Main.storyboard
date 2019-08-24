@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4M5-dN-yFo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -226,6 +225,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePickerLog" destination="qg5-Fg-ZhQ" id="rQ7-6z-Khp"/>
                         <outlet property="firstName" destination="Pn9-Kq-zt6" id="dNR-Vz-le6"/>
                         <outlet property="labelDateBirthday" destination="TI6-Sn-MaS" id="4by-2L-4kL"/>
                         <outlet property="lastName" destination="x5U-Pw-Y16" id="YSb-sD-wWk"/>
