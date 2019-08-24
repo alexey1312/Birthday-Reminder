@@ -67,27 +67,25 @@
       "scale" : "2x"
     },
     {
-      "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "iPhone Settings 29pt@2x.png",
+      "size" : "29x29",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "iPhone Settings 29pt@3x-1.png",
+      "filename" : "iPhone Settings 29pt@2x.png",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "40x40",
+      "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
       "filename" : "iPhone Spotlight 40pt@2x-1.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "40x40",
-      "idiom" : "ipad",
-      "filename" : "iPhone Spotlight 40pt@3x-1.png",
       "scale" : "2x"
     },
     {
@@ -113,13 +111,6 @@
       "idiom" : "ios-marketing",
       "filename" : "App Store iOS.png",
       "scale" : "1x"
-    },
-    {
-      "size" : "40x40",
-      "idiom" : "iphone",
-      "filename" : "iPhone Spotlight 40pt@2x.png",
-      "unassigned" : true,
-      "scale" : "2x"
     }
   ],
   "info" : {
