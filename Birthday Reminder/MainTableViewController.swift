@@ -11,7 +11,10 @@ import UIKit
 class MainTableViewController: UITableViewController {
      
     
-    var testBases = [Birthday(userFirstName: "Aleksei", userLastName: "Kakoulin", userBirthdate: "1991-12-17", userImageData: #imageLiteral(resourceName: "suit"))]
+    var testBases = [Birthday(userFirstName: "Aleksei",
+                              userLastName: "Kakoulin",
+                              userBirthdate: "Tuesday 1991-12-17",
+                              userImageData: #imageLiteral(resourceName: "suit"))]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +37,8 @@ class MainTableViewController: UITableViewController {
         
         cell.labelName.text = testBase.userfullName
         cell.labelDate.text = testBase.userBirthdate
+
         cell.PhotoUserImage.image = testBase.userImageData
-        
         cell.PhotoUserImage.layer.cornerRadius = cell.frame.size.height / 3
 //        cell.userImageData.image = UIImage(data: .imageData!)
         

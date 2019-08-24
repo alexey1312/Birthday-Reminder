@@ -66,6 +66,20 @@ class addBirthdayViewController: UITableViewController {
     
     //MARK: Actions
     @IBAction func datePicker(_ sender: UIDatePicker) {
+        
+        let dateForamaterDate = DateFormatter()
+        let dateFormatreWeekDay = DateFormatter()
+
+        dateForamaterDate.dateFormat = "yyyy-MM-dd"
+        dateFormatreWeekDay.dateFormat = "EEEE"
+      
+        let dateValueDate = dateForamaterDate.string(from: sender.date)
+        let dateValueWeekDay = dateFormatreWeekDay.string(from: sender.date)
+       
+        let capitalizedDate = dateValueDate.capitalized
+        let capitalizedWeekday = dateValueWeekDay.capitalized
+                
+        labelDateBirthday.text = "\(capitalizedWeekday) \(capitalizedDate)"
     }
 
 
