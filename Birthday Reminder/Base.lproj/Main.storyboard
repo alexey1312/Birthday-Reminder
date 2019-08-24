@@ -215,10 +215,14 @@
                     <navigationItem key="navigationItem" title="New Birthday" id="128-kq-C7G">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="E7Q-9H-wg9">
                             <connections>
-                                <segue destination="ZKC-bz-EQC" kind="unwind" unwindAction="cancelAction:" id="X0z-nk-BQV"/>
+                                <action selector="cancelAction:" destination="hw8-KV-7a5" id="cDE-w4-siX"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="WPd-4R-kys"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="WPd-4R-kys">
+                            <connections>
+                                <segue destination="ZKC-bz-EQC" kind="unwind" unwindAction="unwindSegue:" id="toW-Lh-MW9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="firstName" destination="Pn9-Kq-zt6" id="dNR-Vz-le6"/>

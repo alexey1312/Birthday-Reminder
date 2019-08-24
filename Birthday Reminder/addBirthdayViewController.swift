@@ -11,10 +11,11 @@ import UIKit
 class addBirthdayViewController: UITableViewController {
     
     var imageIsChange = false
-    
+    var newBitrhdayUser: Birthday?
 
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var userPhotoImage: UIImageView!
+    
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var labelDateBirthday: UILabel!
@@ -63,7 +64,7 @@ class addBirthdayViewController: UITableViewController {
         present(actionSheet, animated: true)
     }
     
-    
+    //MARK: Actions
     @IBAction func datePicker(_ sender: UIDatePicker) {
     }
 
@@ -77,7 +78,42 @@ class addBirthdayViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         view.endEditing(true)
     }
+    
+    
+    //MARK: Save metods
+    
+    func saveBirtghdayUser() {
+        
+        let image = imageIsChange ? userPhotoImage.image : #imageLiteral(resourceName: "shirt")
+        
+        newBitrhdayUser = Birthday(userFirstName: firstName.text,
+                                   userLastName: lastName.text,
+                                   userBirthdate: labelDateBirthday.text,
+                                   userImageData: image)
+    }
 }
+
+//    //Конвертация image в тип Data
+//    let imageData = image?.pngData()
+//
+//    let newPlace = Place(name: placeName.text!,
+//                         location: placeLocation.text!,
+//                         type: placeType.text!,
+//                         imageData: imageData)
+//
+//    //Добавление новых значений в базу или замена предыдущих
+//    if currentPlace != nil {
+//        try! realm.write {
+//            currentPlace?.name = newPlace.name
+//            currentPlace?.location = newPlace.location
+//            currentPlace?.type = newPlace.type
+//            currentPlace?.imageData = newPlace.imageData
+//        }
+//    } else {
+//        StorageManager.saveObject(newPlace)
+//    }
+//
+//}
 
 //MARK: Text field delegate
 

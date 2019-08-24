@@ -11,7 +11,7 @@ import UIKit
 class MainTableViewController: UITableViewController {
      
     
-    let testBase = [Birthday(userFirstName: "Aleksei", userLastName: "Kakoulin", userBirthdate: "1991-12-17", userImageData: nil)]
+    var testBases = [Birthday(userFirstName: "Aleksei", userLastName: "Kakoulin", userBirthdate: "1991-12-17", userImageData: #imageLiteral(resourceName: "suit"))]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +22,22 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return testBase.isEmpty ? 0: testBase.count
+        return testBases.isEmpty ? 0: testBases.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
+        let testBase = testBases[indexPath.row]
 
         
-        cell.labelName.text = testBase[indexPath.row].userfullName
-        cell.labelDate.text = testBase[indexPath.row].userBirthdate
+        cell.labelName.text = testBase.userfullName
+        cell.labelDate.text = testBase.userBirthdate
+        cell.PhotoUserImage.image = testBase.userImageData
+        
         cell.PhotoUserImage.layer.cornerRadius = cell.frame.size.height / 3
+//        cell.userImageData.image = UIImage(data: .imageData!)
         
 
         return cell
@@ -83,6 +87,13 @@ class MainTableViewController: UITableViewController {
     }
     */
     
-    @IBAction func cancelAction(_ segue: UIStoryboardSegue) {}
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        
+        guard let newBirthdayVC = segue.source as? addBirthdayViewController else { return }
+        
+        newBirthdayVC.saveBirtghdayUser()
+        testBases.append(newBirthdayVC.newBitrhdayUser!)
+        tableView.reloadData()
+    }
     
 }

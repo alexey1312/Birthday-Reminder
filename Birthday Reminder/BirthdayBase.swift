@@ -6,7 +6,7 @@
 //  Copyright © 2019 Aleksei Kakoulin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Birthday {
     
@@ -14,10 +14,10 @@ struct Birthday {
     var userLastName: String? = ""
     var userfullName: String?
     let userBirthdate: String?
-    let userImageData: Data?
+    let userImageData: UIImage?
     let userDateCreate = Date()
 
-    init (userFirstName: String?, userLastName: String?, userBirthdate: String?, userImageData: Data?) {
+    init (userFirstName: String?, userLastName: String?, userBirthdate: String?, userImageData: UIImage?) {
         
         self.userFirstName = userFirstName
         self.userLastName = userLastName
