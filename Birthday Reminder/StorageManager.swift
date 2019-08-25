@@ -8,16 +8,14 @@
 
 import RealmSwift
 
-import RealmSwift
-
 let realm = try! Realm()
 
 class StorageManager {
      
-    static func saveObject(_ place: Birthday) {
+    static func saveObject(_ birthday: Birthday) {
         
         try! realm.write {
-            realm.add(place)
+            realm.add(birthday) 
         }
     }
     
@@ -27,6 +25,3 @@ class StorageManager {
         }
     }
 }
-
-
-

@@ -9,6 +9,7 @@
 import RealmSwift
 import UIKit
 
+
 class MainTableViewController: UITableViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -72,16 +73,23 @@ class MainTableViewController: UITableViewController {
        
        //Добавление свайпа с права на лево для удаления ячеек
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let userBirthday = usersBirthday[indexPath.row]
+        let action = UIContextualAction(style: .destructive, title: "Delete") {_,_,_ in
+            
+            StorageManager.deleteObject(userBirthday)
+            tableView.deleteRows(at: [indexPath],
+                                 with: .automatic)
+        }
                
-               let userBirthday = usersBirthday[indexPath.row]
-               let action = UIContextualAction(style: .destructive, title: "Delete") {_,_,_ in
-                   
-                   StorageManager.deleteObject(userBirthday)
-                   tableView.deleteRows(at: [indexPath], with: .automatic)
-           }
-               let deleteAction = UISwipeActionsConfiguration.init(actions: [action])
-               
-               return deleteAction
+        let deleteAction = UISwipeActionsConfiguration.init(actions: [action])
+        // Remove notification
+        if let identifier = userBirthday.userfullName {
+            let center = UNUserNotificationCenter.current()
+            center.removePendingNotificationRequests(withIdentifiers: [identifier])
+        }
+        
+        return deleteAction
        }
 
 

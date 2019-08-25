@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class addBirthdayViewController: UITableViewController {
     
@@ -111,6 +112,26 @@ class addBirthdayViewController: UITableViewController {
                                    userLastName: lastName.text,
                                    userBirthDate: datePickerLog.date,
                                    userImageData: imageData)
+                //Add alarm to currentBirthday
+        let message = "Сегодня \(newBitrhdayUser.userfullName ?? "") празднует день рождения!"
+        let content = UNMutableNotificationContent()
+        content.body = message
+        content.sound = UNNotificationSound.default
+
+        //Добавление тригера на 9 утра каждый год
+        var dateComponents = Calendar.current.dateComponents([.month, .day],
+                                                            from: newBitrhdayUser.userBirthDate!)
+        dateComponents.hour = 17
+        dateComponents.minute = 30
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
+                                                    repeats: true)
+        if let identifier = newBitrhdayUser.userFirstName {
+            let request = UNNotificationRequest(identifier: identifier,
+                                                content: content,
+                                                trigger: trigger)
+            let center = UNUserNotificationCenter.current()
+            center.add(request, withCompletionHandler: nil)
+        }
         
         //Добавление новых значений в базу или замена предыдущих
         if currentBirthday != nil {
@@ -120,6 +141,26 @@ class addBirthdayViewController: UITableViewController {
                 currentBirthday?.userfullName = newBitrhdayUser.userfullName
                 currentBirthday?.userBirthDate = newBitrhdayUser.userBirthDate
                 currentBirthday?.userImageData = newBitrhdayUser.userImageData
+            }
+                    //Add alarm to currentBirthday
+            let message = "Сегодня \(currentBirthday!.userfullName ?? "") празднует день рождения!"
+            let content = UNMutableNotificationContent()
+            content.body = message
+            content.sound = UNNotificationSound.default
+
+            //Добавление тригера на 9 утра каждый год
+            var dateComponents = Calendar.current.dateComponents([.month, .day],
+                                                                from: currentBirthday!.userBirthDate!)
+            dateComponents.hour = 17
+            dateComponents.minute = 30
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
+                                                        repeats: true)
+            if let identifier = currentBirthday?.userFirstName {
+                let request = UNNotificationRequest(identifier: identifier,
+                                                    content: content,
+                                                    trigger: trigger)
+                let center = UNUserNotificationCenter.current()
+                center.add(request, withCompletionHandler: nil)
             }
         } else {
             StorageManager.saveObject(newBitrhdayUser)
