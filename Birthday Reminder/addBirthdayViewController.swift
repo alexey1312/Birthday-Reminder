@@ -24,14 +24,16 @@ class addBirthdayViewController: UITableViewController {
     
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
         
-        //Скрываем кнопку Save если поле Имя пустое
+        tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
         saveButton.isEnabled = false
+        //Скрываем кнопку Save если поле Имя пустое
         firstName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        
+        setupEditScreen()
     }
+    
 
     @IBAction func editPhotoUser(_ sender: UIButton) {
             
@@ -99,8 +101,10 @@ class addBirthdayViewController: UITableViewController {
     
     func saveBirtghdayUser() {
         
+
         let image = imageIsChange ? userPhotoImage.image : #imageLiteral(resourceName: "shirt")
         //Конвертация image в тип Data
+        
         let imageData = image?.pngData()
         
         let newBitrhdayUser = Birthday(userFirstName: firstName.text,
@@ -120,6 +124,54 @@ class addBirthdayViewController: UITableViewController {
             StorageManager.saveObject(newBitrhdayUser)
         }
     }
+    
+    private func setupEditScreen() {
+        if currentBirthday != nil {
+            
+            setupNavigationBar()
+            imageIsChange = true
+            
+            guard let data = currentBirthday?.userImageData, let image = UIImage(data: data) else { return }
+            
+            userPhotoImage.image = image
+            userPhotoImage.contentMode = .scaleToFill //Масштабирование изображения по размеру экрана
+            
+            //Конвертация даты
+            let userBirthdayDate = currentBirthday?.userBirthDate
+            let dateForamaterDate = DateFormatter()
+            let dateFormatreWeekDay = DateFormatter()
+
+            dateForamaterDate.dateFormat = "yyyy-MM-dd"
+            dateFormatreWeekDay.dateFormat = "EEEE"
+            
+            let dateValueDate = dateForamaterDate.string(from: userBirthdayDate!)
+            let dateValueWeekDay = dateFormatreWeekDay.string(from: userBirthdayDate!)
+             
+            let capitalizedDate = dateValueDate.capitalized
+            let capitalizedWeekday = dateValueWeekDay.capitalized
+            let fullDate = "\(capitalizedWeekday) \(capitalizedDate)"
+
+            //
+            firstName.text = currentBirthday?.userFirstName
+            lastName.text = currentBirthday?.userLastName
+            labelDateBirthday.text = fullDate
+            datePickerLog.date = currentBirthday!.userBirthDate!
+        }
+    }
+    
+    private func setupNavigationBar() {
+        
+        if let topItem = navigationController?.navigationBar.topItem{
+            topItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                        style: .plain,
+                                                        target: nil,
+                                                        action: nil)
+        }
+        navigationItem.leftBarButtonItem = nil
+        title = currentBirthday?.userfullName
+        saveButton.isEnabled = true
+    }
+ 
 }
 
 //MARK: Text field delegate

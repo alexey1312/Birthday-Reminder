@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4M5-dN-yFo">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,35 +11,35 @@
             <objects>
                 <tableViewController id="iBs-yH-2Tt" customClass="MainTableViewController" customModule="Birthday_Reminder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ETO-be-xzt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="bfR-V2-3u5" customClass="CustomTableViewCell" customModule="Birthday_Reminder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bfR-V2-3u5" id="87b-eJ-8eP">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt" translatesAutoresizingMaskIntoConstraints="NO" id="snc-Gy-9dv">
-                                            <rect key="frame" x="20" y="11" width="65" height="68"/>
+                                            <rect key="frame" x="16" y="11" width="65" height="68"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="65" id="34R-jS-QlX"/>
                                                 <constraint firstAttribute="height" constant="65" id="KEa-7c-F9U"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="Xnb-Ja-WZC">
-                                            <rect key="frame" x="105" y="11" width="279" height="68"/>
+                                            <rect key="frame" x="101" y="11" width="248" height="68"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3r-9l-NIU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="279" height="23.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="248" height="23.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDx-Gt-NEf">
-                                                    <rect key="frame" x="0.0" y="44.5" width="279" height="23.5"/>
+                                                    <rect key="frame" x="0.0" y="44.5" width="248" height="23.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -62,6 +62,7 @@
                                     <outlet property="PhotoUserImage" destination="snc-Gy-9dv" id="FvA-xb-OrJ"/>
                                     <outlet property="labelDate" destination="uDx-Gt-NEf" id="U42-fB-brz"/>
                                     <outlet property="labelName" destination="m3r-9l-NIU" id="fbC-gy-dgP"/>
+                                    <segue destination="hw8-KV-7a5" kind="show" identifier="showDetail" id="N1j-U3-hDf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -70,7 +71,7 @@
                             <outlet property="delegate" destination="iBs-yH-2Tt" id="ali-61-Tgx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Birthdays" id="b3O-gc-Rkx">
+                    <navigationItem key="navigationItem" title="Birthdays" largeTitleDisplayMode="never" id="b3O-gc-Rkx">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ti4-zL-M1S">
                             <connections>
                                 <segue destination="Iml-nV-0l5" kind="presentation" modalTransitionStyle="coverVertical" id="fim-Pr-8qc"/>
@@ -90,28 +91,28 @@
             <objects>
                 <tableViewController id="hw8-KV-7a5" customClass="addBirthdayViewController" customModule="Birthday_Reminder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dAK-2m-tQZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="wVM-a1-6S6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="105" id="hXA-Wg-Xir">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="105"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hXA-Wg-Xir" id="PAJ-NC-WMU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt" translatesAutoresizingMaskIntoConstraints="NO" id="FDt-Jz-mXK">
-                                                    <rect key="frame" x="174.5" y="10" width="65" height="65"/>
+                                                    <rect key="frame" x="155" y="10" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="65" id="5a4-xH-hq5"/>
                                                         <constraint firstAttribute="width" constant="65" id="yhC-SH-a7U"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOt-11-xGJ">
-                                                    <rect key="frame" x="191.5" y="79" width="31" height="22"/>
+                                                    <rect key="frame" x="172" y="79" width="31" height="22"/>
                                                     <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
                                                     <state key="normal" title="photo"/>
                                                     <connections>
@@ -129,14 +130,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="75" id="TEr-r9-XHC">
-                                        <rect key="frame" x="0.0" y="133" width="414" height="75"/>
+                                        <rect key="frame" x="0.0" y="133" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TEr-r9-XHC" id="0kE-yV-0es">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Pn9-Kq-zt6">
-                                                    <rect key="frame" x="16" y="8" width="382" height="59"/>
+                                                    <rect key="frame" x="16" y="8" width="343" height="59"/>
                                                     <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" textContentType="name"/>
                                                     <connections>
@@ -153,14 +154,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="75" id="Kya-0W-SmQ">
-                                        <rect key="frame" x="0.0" y="208" width="414" height="75"/>
+                                        <rect key="frame" x="0.0" y="208" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kya-0W-SmQ" id="TeA-rv-H5y">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x5U-Pw-Y16">
-                                                    <rect key="frame" x="16" y="8" width="382" height="59"/>
+                                                    <rect key="frame" x="16" y="8" width="343" height="59"/>
                                                     <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" textContentType="name"/>
                                                     <connections>
@@ -177,20 +178,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="280" id="6Zd-JT-Hii">
-                                        <rect key="frame" x="0.0" y="283" width="414" height="280"/>
+                                        <rect key="frame" x="0.0" y="283" width="375" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Zd-JT-Hii" id="aFt-Ig-bcy">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="280"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TI6-Sn-MaS">
-                                                    <rect key="frame" x="161.5" y="11" width="91" height="40"/>
+                                                    <rect key="frame" x="142" y="11" width="91" height="40"/>
                                                     <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="qg5-Fg-ZhQ">
-                                                    <rect key="frame" x="47" y="59" width="320" height="216"/>
+                                                    <rect key="frame" x="27.5" y="59" width="320" height="216"/>
                                                     <connections>
                                                         <action selector="datePicker:" destination="hw8-KV-7a5" eventType="valueChanged" id="koy-Hh-tCY"/>
                                                     </connections>
@@ -212,7 +213,7 @@
                             <outlet property="delegate" destination="hw8-KV-7a5" id="5GH-Vn-7iw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Birthday" id="128-kq-C7G">
+                    <navigationItem key="navigationItem" title="New Birthday" largeTitleDisplayMode="always" id="128-kq-C7G">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="E7Q-9H-wg9">
                             <connections>
                                 <action selector="cancelAction:" destination="hw8-KV-7a5" id="cDE-w4-siX"/>
@@ -236,15 +237,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7h-Am-LjL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ZKC-bz-EQC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1705.7971014492755" y="51.5625"/>
+            <point key="canvasLocation" x="1862" y="52"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pMv-ak-jll">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4M5-dN-yFo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RUy-Bd-dnS">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="RUy-Bd-dnS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="20"/>
@@ -268,7 +269,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iml-nV-0l5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7tM-d2-OHl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="20"/>
@@ -281,10 +282,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDh-uB-Rvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1706" y="-702"/>
+            <point key="canvasLocation" x="1861" y="-702"/>
         </scene>
     </scenes>
     <resources>
         <image name="shirt" width="118" height="128"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="N1j-U3-hDf"/>
+    </inferredMetricsTieBreakers>
 </document>

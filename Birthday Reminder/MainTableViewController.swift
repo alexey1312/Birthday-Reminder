@@ -17,6 +17,7 @@ class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         
         usersBirthday = realm.objects(Birthday.self)
+//        tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
 
     }
     
@@ -32,9 +33,10 @@ class MainTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
         let userBirthday = usersBirthday[indexPath.row]
-        let userBirthdayDate = usersBirthday[indexPath.row].userBirthDate
+        
 
         //Конвертация даты
+        let userBirthdayDate = usersBirthday[indexPath.row].userBirthDate
         let dateForamaterDate = DateFormatter()
         let dateFormatreWeekDay = DateFormatter()
 
@@ -77,32 +79,22 @@ class MainTableViewController: UITableViewController {
                return deleteAction
        }
 
-//           //Добавление свайпа с лева на право для релактирования ячеек
-//    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//
-//           _ = usersBirthday[indexPath.row]
-//           let action = UIContextualAction(style: .normal, title: "Edit") {_,_,_ in
-//       
-//       }
-//           action.backgroundColor = .orange
-//           let editAction = UISwipeActionsConfiguration.init(actions: [action])
-//
-//           return editAction
-//   }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetail"{
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let birthday = usersBirthday[indexPath.row]
+            let newBirthdayVC = segue.destination as! addBirthdayViewController
+            newBirthdayVC.currentBirthday = birthday
+        }
     }
-    */
-    
+
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         
         guard let newBirthdayVC = segue.source as? addBirthdayViewController else { return }
+        
         newBirthdayVC.saveBirtghdayUser()
         tableView.reloadData()
     }
