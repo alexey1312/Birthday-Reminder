@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import RealmSwift
+import Contacts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     
+    
+    
+    
+    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let center = UNUserNotificationCenter.current()
@@ -49,6 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
            // Tell Realm to use this new configuration object for the default Realm
            Realm.Configuration.defaultConfiguration = config
+        
+        
+        
+        // Ask for the user’s permission for access to Contacts.
+        CNContactStore().requestAccess(for: .contacts) { (access, error) in
+          print("Access: \(access)")
+        }
 
 
         return true
