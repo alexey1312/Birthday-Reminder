@@ -57,6 +57,7 @@
                                         <constraint firstAttribute="bottom" secondItem="snc-Gy-9dv" secondAttribute="bottom" constant="10" id="k1K-wD-eck"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <connections>
                                     <outlet property="PhotoUserImage" destination="snc-Gy-9dv" id="FvA-xb-OrJ"/>
                                     <outlet property="labelDate" destination="uDx-Gt-NEf" id="U42-fB-brz"/>
