@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Birthdays-->
+        <!--Main Table View Controller-->
         <scene sceneID="BDV-ms-y3M">
             <objects>
                 <tableViewController id="iBs-yH-2Tt" customClass="MainTableViewController" customModule="Birthday_Reminder" customModuleProvider="target" sceneMemberID="viewController">
@@ -71,7 +71,24 @@
                             <outlet property="delegate" destination="iBs-yH-2Tt" id="ali-61-Tgx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Birthdays" largeTitleDisplayMode="never" id="b3O-gc-Rkx">
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="b3O-gc-Rkx">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="AZ" id="6VN-88-fmQ">
+                            <connections>
+                                <action selector="reversedSorting:" destination="iBs-yH-2Tt" id="nMb-af-WJe"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="MrX-8J-duA">
+                            <rect key="frame" x="85" y="5.5" width="205" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Name"/>
+                                <segment title="Birthday date"/>
+                            </segments>
+                            <connections>
+                                <action selector="sortSelection:" destination="iBs-yH-2Tt" eventType="valueChanged" id="GZP-Ro-ot2"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ti4-zL-M1S">
                             <connections>
                                 <segue destination="Iml-nV-0l5" kind="presentation" modalTransitionStyle="coverVertical" id="fim-Pr-8qc"/>
@@ -79,10 +96,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="reverstSortingButton" destination="6VN-88-fmQ" id="fDH-Fp-XyI"/>
+                        <outlet property="segmentedControl" destination="MrX-8J-duA" id="E9O-p8-as5"/>
                         <outlet property="tableView" destination="ETO-be-xzt" id="JDQ-ZS-kb2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdO-gu-1WL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="1Uh-Ox-OUu">
+                    <rect key="frame" x="0.0" y="-1" width="375" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Name"/>
+                        <segment title="Birthday date"/>
+                    </segments>
+                </segmentedControl>
             </objects>
             <point key="canvasLocation" x="886.95652173913049" y="51.5625"/>
         </scene>
@@ -286,6 +313,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AZ" width="25" height="24"/>
         <image name="shirt" width="118" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -11,6 +11,11 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var reverstSortingButton: UIBarButtonItem!
+    
+    
+    var ascendingSorting = true
     var usersBirthday: Results<Birthday>!
 
     override func viewDidLoad() {
@@ -99,4 +104,43 @@ class MainTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    //MARK: Sorting item
+    
+    @IBAction func sortSelection(_ sender: UISegmentedControl) {
+        
+        sorting()
+    }
+    
+    
+    @IBAction func reversedSorting(_ sender: Any) {
+        
+        ascendingSorting.toggle()
+        if ascendingSorting {
+            reverstSortingButton.image = #imageLiteral(resourceName: "AZ")
+        } else {
+            reverstSortingButton.image = #imageLiteral(resourceName: "ZA")
+        }
+        
+        sorting()
+    }
+    
+    private func sorting() {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            usersBirthday = usersBirthday.sorted(byKeyPath: "userFirstName", ascending: ascendingSorting)
+        } else {
+            usersBirthday = usersBirthday.sorted(byKeyPath: "userBirthDate", ascending: ascendingSorting)
+        }
+        
+        //Обновить таблицу
+        tableView.reloadData()
+    }
+    
+    
+    
+    
 }
+
+
+
+
+
