@@ -125,7 +125,7 @@ class addBirthdayViewController: UITableViewController {
         dateComponents.minute = 30
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                     repeats: true)
-        if let identifier = newBitrhdayUser.userFirstName {
+        if let identifier = newBitrhdayUser.userBirthdayId {
             let request = UNNotificationRequest(identifier: identifier,
                                                 content: content,
                                                 trigger: trigger)
@@ -155,7 +155,7 @@ class addBirthdayViewController: UITableViewController {
             dateComponents.minute = 30
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                         repeats: true)
-            if let identifier = currentBirthday?.userFirstName {
+            if let identifier = currentBirthday?.userBirthdayId {
                 let request = UNNotificationRequest(identifier: identifier,
                                                     content: content,
                                                     trigger: trigger)

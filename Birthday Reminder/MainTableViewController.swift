@@ -83,8 +83,9 @@ class MainTableViewController: UITableViewController {
         }
                
         let deleteAction = UISwipeActionsConfiguration.init(actions: [action])
+        
         // Remove notification
-        if let identifier = userBirthday.userfullName {
+        if let identifier = userBirthday.userFirstName {
             let center = UNUserNotificationCenter.current()
             center.removePendingNotificationRequests(withIdentifiers: [identifier])
         }

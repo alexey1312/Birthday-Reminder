@@ -14,9 +14,10 @@ class Birthday: Object {
     @objc dynamic var userFirstName: String? = ""
     @objc dynamic var userLastName: String? = ""
     @objc dynamic var userfullName: String?
-    @objc dynamic var userBirthDate: Date!
+    @objc dynamic var userBirthDate: Date?
     @objc dynamic var userImageData: Data?
     @objc dynamic var userDateCreate = Date()
+    @objc dynamic var userBirthdayId = UUID().uuidString
 
     convenience init (userFirstName: String?, userLastName: String?, userBirthDate: Date, userImageData: Data?) {
         self.init()
