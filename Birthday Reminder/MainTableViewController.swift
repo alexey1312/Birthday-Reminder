@@ -21,9 +21,9 @@ class MainTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         usersBirthday = realm.objects(Birthday.self)
-//        tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
+        tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
 
     }
     

@@ -121,11 +121,11 @@ class addBirthdayViewController: UITableViewController {
         //Добавление тригера на 9 утра каждый год
         var dateComponents = Calendar.current.dateComponents([.month, .day],
                                                             from: newBitrhdayUser.userBirthDate!)
-        dateComponents.hour = 17
-        dateComponents.minute = 30
+        dateComponents.hour = 09
+        dateComponents.minute = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                     repeats: true)
-        if let identifier = newBitrhdayUser.userBirthdayId {
+        if let identifier = newBitrhdayUser.userFirstName {
             let request = UNNotificationRequest(identifier: identifier,
                                                 content: content,
                                                 trigger: trigger)
@@ -151,11 +151,11 @@ class addBirthdayViewController: UITableViewController {
             //Добавление тригера на 9 утра каждый год
             var dateComponents = Calendar.current.dateComponents([.month, .day],
                                                                 from: currentBirthday!.userBirthDate!)
-            dateComponents.hour = 17
-            dateComponents.minute = 30
+            dateComponents.hour = 09
+            dateComponents.minute = 00
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                         repeats: true)
-            if let identifier = currentBirthday?.userBirthdayId {
+            if let identifier = currentBirthday?.userFirstName {
                 let request = UNNotificationRequest(identifier: identifier,
                                                     content: content,
                                                     trigger: trigger)
