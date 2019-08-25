@@ -66,9 +66,7 @@ class MainTableViewController: UITableViewController {
 
         return cell
     }
-
-       
-       
+ 
        //MARK: Table view delegate
        
        //Добавление свайпа с права на лево для удаления ячеек
