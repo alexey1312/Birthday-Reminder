@@ -117,6 +117,7 @@ class addBirthdayViewController: UITableViewController {
             try! realm.write {
                 currentBirthday?.userFirstName = newBitrhdayUser.userFirstName
                 currentBirthday?.userLastName = newBitrhdayUser.userLastName
+                currentBirthday?.userfullName = newBitrhdayUser.userfullName
                 currentBirthday?.userBirthDate = newBitrhdayUser.userBirthDate
                 currentBirthday?.userImageData = newBitrhdayUser.userImageData
             }
