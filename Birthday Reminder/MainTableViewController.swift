@@ -9,7 +9,6 @@
 import RealmSwift
 import UIKit
 
-
 class MainTableViewController: UITableViewController {
     
     private var usersBirthday: Results<Birthday>!
