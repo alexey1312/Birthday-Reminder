@@ -16,6 +16,7 @@ class Birthday: Object {
     @objc dynamic var userfullName: String?
     @objc dynamic var userBirthDate: Date?
     @objc dynamic var userImageData: Data?
+    @objc dynamic var userBirthDateToString: String?
     @objc dynamic var userDateCreate = Date()
     @objc dynamic var userBirthdayId = UUID().uuidString
 
@@ -26,5 +27,6 @@ class Birthday: Object {
         self.userBirthDate = userBirthDate
         self.userImageData = userImageData
         self.userfullName = (userFirstName ?? "") + (" ") + (userLastName ?? "")
-        }
+        self.userBirthDateToString = userBirthDate?.description ?? ""
+        } 
 }

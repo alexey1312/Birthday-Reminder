@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
            //MARK: Realm
            
-           let schemaVersion: UInt64 = 1
+           let schemaVersion: UInt64 = 3
            
            let config = Realm.Configuration(
                // Set the new schema version. This must be greater than the previously used

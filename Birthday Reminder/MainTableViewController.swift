@@ -187,14 +187,29 @@ class MainTableViewController: UITableViewController {
 //For Search
 extension MainTableViewController: UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
+    
+        _ = filterContentForSearchText(searchController.searchBar.text!)
     }
 
     private func filterContentForSearchText(_ searchText: String){
         
-        filtredUsersBirthday = usersBirthday.filter("userFirstName CONTAINS[c] %@ OR userLastName CONTAINS[c] %@", searchText, searchText)
+        filtredUsersBirthday = usersBirthday.filter("userFirstName CONTAINS[c] %@ OR userLastName CONTAINS[c]  %@ OR userBirthDateToString CONTAINS[c]  %@", searchText, searchText, searchText)
         
         tableView.reloadData()
         
     }
 }
+//
+//extension String {
+//
+//  func toDate(withFormat format: String = "yyyy-MM-dd") -> Date {
+//    let dateFormatter = DateFormatter()
+//    dateFormatter.dateFormat = format
+//    guard let date = dateFormatter.date(from: self) else {
+//      preconditionFailure("Take a look to your format")
+//    }
+//    return date
+//  }
+//
+//}
+
