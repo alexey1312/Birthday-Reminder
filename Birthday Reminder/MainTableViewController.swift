@@ -67,15 +67,19 @@ class MainTableViewController: UITableViewController {
         
         var userBirthday = Birthday()
         
+        //Конвертация даты
+
+
+        
         if isFiltering {
             userBirthday = filtredUsersBirthday[indexPath.row]
+   
         } else {
             userBirthday = usersBirthday[indexPath.row]
         }
-        
 
-        //Конвертация даты
-        let userBirthdayDate = usersBirthday[indexPath.row].userBirthDate
+        let userBirthdayDate = userBirthday.userBirthDate
+
         let dateForamaterDate = DateFormatter()
         let dateFormatreWeekDay = DateFormatter()
 
@@ -88,9 +92,7 @@ class MainTableViewController: UITableViewController {
         let capitalizedDate = dateValueDate.capitalized
         let capitalizedWeekday = dateValueWeekDay.capitalized
         let fullDate = "\(capitalizedWeekday) \(capitalizedDate)"
-
-
-        
+  
         cell.labelName.text = userBirthday.userfullName
         cell.labelDate.text = fullDate
         
