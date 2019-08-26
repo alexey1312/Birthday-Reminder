@@ -102,14 +102,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdO-gu-1WL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="1Uh-Ox-OUu">
-                    <rect key="frame" x="0.0" y="-1" width="375" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <segments>
-                        <segment title="Name"/>
-                        <segment title="Birthday date"/>
-                    </segments>
-                </segmentedControl>
             </objects>
             <point key="canvasLocation" x="886.95652173913049" y="51.5625"/>
         </scene>

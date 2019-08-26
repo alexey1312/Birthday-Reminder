@@ -12,15 +12,36 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
+    private var usersBirthday: Results<Birthday>!
+    private var ascendingSorting = true
+    
+    //Search supporting
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filtredUsersBirthday: Results<Birthday>!
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var reverstSortingButton: UIBarButtonItem!
-    
-    
-    var ascendingSorting = true
-    var usersBirthday: Results<Birthday>!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Setup search controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search name"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true //Опусить строку поиска при переходе на другой экран
+
 
         usersBirthday = realm.objects(Birthday.self)
         tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
@@ -31,6 +52,10 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if isFiltering {
+                 return filtredUsersBirthday.count
+             }
+        
         return usersBirthday.isEmpty ? 0: usersBirthday.count
     }
 
@@ -38,7 +63,15 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
-        let userBirthday = usersBirthday[indexPath.row]
+        
+        
+        var userBirthday = Birthday()
+        
+        if isFiltering {
+            userBirthday = filtredUsersBirthday[indexPath.row]
+        } else {
+            userBirthday = usersBirthday[indexPath.row]
+        }
         
 
         //Конвертация даты
@@ -97,7 +130,15 @@ class MainTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail"{
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let birthday = usersBirthday[indexPath.row]
+            
+            let birthday: Birthday
+            
+            if isFiltering{
+                birthday = filtredUsersBirthday[indexPath.row]
+            } else {
+                birthday = usersBirthday[indexPath.row]
+            }
+            
             let newBirthdayVC = segue.destination as! addBirthdayViewController
             newBirthdayVC.currentBirthday = birthday
         }
@@ -141,13 +182,19 @@ class MainTableViewController: UITableViewController {
         //Обновить таблицу
         tableView.reloadData()
     }
-    
-    
-    
-    
 }
 
+//For Search
+extension MainTableViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 
-
-
-
+    private func filterContentForSearchText(_ searchText: String){
+        
+        filtredUsersBirthday = usersBirthday.filter("userFirstName CONTAINS[c] %@ OR userLastName CONTAINS[c] %@", searchText, searchText)
+        
+        tableView.reloadData()
+        
+    }
+}
