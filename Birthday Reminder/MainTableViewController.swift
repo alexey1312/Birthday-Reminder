@@ -38,7 +38,7 @@ class MainTableViewController: UITableViewController {
         //Setup search controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search name"
+        searchController.searchBar.placeholder = "Search first, last name and date"
         navigationItem.searchController = searchController
         definesPresentationContext = true //Опусить строку поиска при переходе на другой экран
 
@@ -72,10 +72,9 @@ class MainTableViewController: UITableViewController {
         } else {
             userBirthday = usersBirthday[indexPath.row]
         }
-        
 
         //Конвертация даты
-        let userBirthdayDate = usersBirthday[indexPath.row].userBirthDate
+        let userBirthdayDate = userBirthday.userBirthDate
         let dateForamaterDate = DateFormatter()
         let dateFormatreWeekDay = DateFormatter()
 
