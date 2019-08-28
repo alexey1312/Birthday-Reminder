@@ -6,41 +6,54 @@
 //  Copyright © 2019 Aleksei Kakoulin. All rights reserved.
 //
 
+import RealmSwift
 import UIKit
 
 class favoritesTableViewController: UITableViewController {
-
+    
+    var favoritBirthday: Results<Birthday>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        favoritBirthday = realm.objects(Birthday.self)
+        tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 3
+//        
+//        var userBirthday = Birthday()
+//        var dateComponents = Calendar.current.dateComponents([.month],
+//                                                             from: userBirthday.userBirthDate!)
+        
+        
+        
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return favoritBirthday.isEmpty ? 0: favoritBirthday.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        var userBirthday = Birthday()
+        userBirthday = favoritBirthday[indexPath.row]
+        
+        //Конвертация даты
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateValueDate = dateFormatter.string(from: favoritBirthday[indexPath.row].userBirthDate!)
 
-        // Configure the cell...
+        cell.textLabel?.text = userBirthday.userfullName
+        cell.detailTextLabel?.text = dateValueDate
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -88,3 +101,5 @@ class favoritesTableViewController: UITableViewController {
     */
 
 }
+
+

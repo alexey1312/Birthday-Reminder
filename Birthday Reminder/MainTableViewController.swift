@@ -61,9 +61,7 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        
-        
-        
+ 
         var userBirthday = Birthday()
         
         if isFiltering {
@@ -87,8 +85,6 @@ class MainTableViewController: UITableViewController {
         let capitalizedWeekday = dateValueWeekDay.capitalized
         let fullDate = "\(capitalizedWeekday) \(capitalizedDate)"
 
-
-        
         cell.labelName.text = userBirthday.userfullName
         cell.labelDate.text = fullDate
         
@@ -197,17 +193,11 @@ extension MainTableViewController: UISearchResultsUpdating{
         
     }
 }
-//
-//extension String {
-//
-//  func toDate(withFormat format: String = "yyyy-MM-dd") -> Date {
-//    let dateFormatter = DateFormatter()
-//    dateFormatter.dateFormat = format
-//    guard let date = dateFormatter.date(from: self) else {
-//      preconditionFailure("Take a look to your format")
-//    }
-//    return date
-//  }
-//
-//}
 
+extension Date {
+    static func dateFormatCustomString(customString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.date(from: customString) ?? Date()
+    }
+}
