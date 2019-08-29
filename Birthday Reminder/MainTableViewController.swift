@@ -190,7 +190,6 @@ extension MainTableViewController: UISearchResultsUpdating{
         filtredUsersBirthday = usersBirthday.filter("userFirstName CONTAINS[c] %@ OR userLastName CONTAINS[c]  %@ OR userBirthDateToString CONTAINS[c]  %@", searchText, searchText, searchText)
         
         tableView.reloadData()
-        
     }
 }
 
