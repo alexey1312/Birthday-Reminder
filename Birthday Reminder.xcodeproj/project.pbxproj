@@ -18,7 +18,7 @@
 		84CF00CB23111BB400AD8667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84CF00CA23111BB400AD8667 /* Assets.xcassets */; };
 		84CF00CE23111BB400AD8667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CF00CC23111BB400AD8667 /* LaunchScreen.storyboard */; };
 		84CF00D82311385600AD8667 /* BirthdayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF00D72311385600AD8667 /* BirthdayModel.swift */; };
-		84CF879E2314444E0091C1FC /* favoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF879D2314444E0091C1FC /* favoritesTableViewController.swift */; };
+		84CF879E2314444E0091C1FC /* datesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF879D2314444E0091C1FC /* datesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 		84CF00CD23111BB400AD8667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84CF00CF23111BB400AD8667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84CF00D72311385600AD8667 /* BirthdayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayModel.swift; sourceTree = "<group>"; };
-		84CF879D2314444E0091C1FC /* favoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favoritesTableViewController.swift; sourceTree = "<group>"; };
+		84CF879D2314444E0091C1FC /* datesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datesTableViewController.swift; sourceTree = "<group>"; };
 		A31090B6A4E8543BBA950FBE /* Pods-Birthday Reminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Birthday Reminder.release.xcconfig"; path = "Target Support Files/Pods-Birthday Reminder/Pods-Birthday Reminder.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,11 +85,11 @@
 				84CF00BF23111BB200AD8667 /* AppDelegate.swift */,
 				84CF00C123111BB200AD8667 /* SceneDelegate.swift */,
 				84CF00D72311385600AD8667 /* BirthdayModel.swift */,
+				84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */,
 				8444345E2311B764007D3DC1 /* StorageManager.swift */,
 				84BF9D0323119AF60089FF55 /* MainTableViewController.swift */,
-				84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */,
 				84CF00C323111BB200AD8667 /* addBirthdayViewController.swift */,
-				84CF879D2314444E0091C1FC /* favoritesTableViewController.swift */,
+				84CF879D2314444E0091C1FC /* datesTableViewController.swift */,
 				84CF00C723111BB200AD8667 /* Main.storyboard */,
 				84CF00CA23111BB400AD8667 /* Assets.xcassets */,
 				84CF00CC23111BB400AD8667 /* LaunchScreen.storyboard */,
@@ -224,7 +224,7 @@
 				84C5BBBD23114BF00038B011 /* CustomTableViewCell.swift in Sources */,
 				84CF00C423111BB200AD8667 /* addBirthdayViewController.swift in Sources */,
 				84CF00D82311385600AD8667 /* BirthdayModel.swift in Sources */,
-				84CF879E2314444E0091C1FC /* favoritesTableViewController.swift in Sources */,
+				84CF879E2314444E0091C1FC /* datesTableViewController.swift in Sources */,
 				8444345F2311B764007D3DC1 /* StorageManager.swift in Sources */,
 				84CF00C023111BB200AD8667 /* AppDelegate.swift in Sources */,
 				84BF9D0423119AF60089FF55 /* MainTableViewController.swift in Sources */,
