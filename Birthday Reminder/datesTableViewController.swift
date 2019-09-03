@@ -8,32 +8,57 @@
 
 import RealmSwift
 import UIKit
+
+
  
 class datesTableViewController: UITableViewController {
-    
+  
     private var usersBirthday: Results<Birthday>!
+    
+    let items = try! Realm().objects(Birthday.self).sorted(by: ["userBirthDate", "userFirstName"])
+    var section: [String] {
+        return Set(items.value(forKeyPath: "userBirthDate") as! [String]).sorted()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dateCell")
+        
         usersBirthday = realm.objects(Birthday.self)
         tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
     }
     
+
     // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+
+        return self.usersBirthday.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = usersBirthday[section]
+        let date = section.userBirthDate
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        return dateFormatter.string(from: date ?? Date())
+    }
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return usersBirthday.isEmpty ? 0: usersBirthday.count
+        return usersBirthday.count / usersBirthday.count
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
-        var userBirthday = Birthday()
-        userBirthday = usersBirthday[indexPath.row]
+        
+        let headline = usersBirthday[indexPath.section]
+
         //Конвертация даты
-        let userBirthdayDate = userBirthday.userBirthDate
+        let userBirthdayDate = headline.userBirthDate
         let dateForamaterDate = DateFormatter()
         let dateFormatreWeekDay = DateFormatter()
         
@@ -46,33 +71,9 @@ class datesTableViewController: UITableViewController {
         let capitalizedWeekday = dateValueWeekDay.capitalized
         let fullDate = "\(capitalizedWeekday) \(capitalizedDate)"
         
-        cell.textLabel?.text = userBirthday.userfullName
+        cell.textLabel?.text = headline.userfullName
         cell.detailTextLabel?.text = fullDate
 
         return cell
     }
- 
-       //MARK: Table view delegate
-       
-       //Добавление свайпа с права на лево для удаления ячеек
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let userBirthday = usersBirthday[indexPath.row]
-        let action = UIContextualAction(style: .destructive, title: "Delete") {_,_,_ in
-            
-            StorageManager.deleteObject(userBirthday)
-            tableView.deleteRows(at: [indexPath],
-                                 with: .automatic)
-        }
-               
-        let deleteAction = UISwipeActionsConfiguration.init(actions: [action])
-        
-        // Remove notification
-        if let identifier = userBirthday.userFirstName {
-            let center = UNUserNotificationCenter.current()
-            center.removePendingNotificationRequests(withIdentifiers: [identifier])
-        }
-        
-        return deleteAction
-       }
 }
