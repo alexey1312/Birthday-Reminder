@@ -61,6 +61,45 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		84B7A6D32320257800AC0DDC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8444345E2311B764007D3DC1 /* StorageManager.swift */,
+				84CF00D72311385600AD8667 /* BirthdayModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84B7A6D42320258200AC0DDC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84CF00CC23111BB400AD8667 /* LaunchScreen.storyboard */,
+				84CF00C723111BB200AD8667 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84B7A6D52320258700AC0DDC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				84BF9D0323119AF60089FF55 /* MainTableViewController.swift */,
+				84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */,
+				84CF00C323111BB200AD8667 /* addBirthdayViewController.swift */,
+				84CF879D2314444E0091C1FC /* datesTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		84B7A6D6232025C500AC0DDC /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				84CF00C123111BB200AD8667 /* SceneDelegate.swift */,
+				84CF00BF23111BB200AD8667 /* AppDelegate.swift */,
+				84CF00CA23111BB400AD8667 /* Assets.xcassets */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		84CF00B323111BB200AD8667 = {
 			isa = PBXGroup;
 			children = (
@@ -82,18 +121,11 @@
 		84CF00BE23111BB200AD8667 /* Birthday Reminder */ = {
 			isa = PBXGroup;
 			children = (
-				84CF00BF23111BB200AD8667 /* AppDelegate.swift */,
-				84CF00C123111BB200AD8667 /* SceneDelegate.swift */,
-				84CF00D72311385600AD8667 /* BirthdayModel.swift */,
-				84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */,
-				8444345E2311B764007D3DC1 /* StorageManager.swift */,
-				84BF9D0323119AF60089FF55 /* MainTableViewController.swift */,
-				84CF00C323111BB200AD8667 /* addBirthdayViewController.swift */,
-				84CF879D2314444E0091C1FC /* datesTableViewController.swift */,
-				84CF00C723111BB200AD8667 /* Main.storyboard */,
-				84CF00CA23111BB400AD8667 /* Assets.xcassets */,
-				84CF00CC23111BB400AD8667 /* LaunchScreen.storyboard */,
 				84CF00CF23111BB400AD8667 /* Info.plist */,
+				84B7A6D6232025C500AC0DDC /* Support */,
+				84B7A6D32320257800AC0DDC /* Model */,
+				84B7A6D42320258200AC0DDC /* View */,
+				84B7A6D52320258700AC0DDC /* Controller */,
 			);
 			path = "Birthday Reminder";
 			sourceTree = "<group>";

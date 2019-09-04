@@ -12,7 +12,7 @@ import UIKit
 
  
 class datesTableViewController: UITableViewController {
-
+    
     let items = try! Realm().objects(Birthday.self).sorted(by: ["userFirstName"])
     var sectionNames: [String] {
         return Set(items.value(forKeyPath: "userFirstName") as! [String]).sorted()
