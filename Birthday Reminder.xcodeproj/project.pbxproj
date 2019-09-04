@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0084A73547A4115A67D9688E /* Pods_Birthday_Reminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2040D30C4BBBFAB2E4EF8F82 /* Pods_Birthday_Reminder.framework */; };
 		8444345F2311B764007D3DC1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8444345E2311B764007D3DC1 /* StorageManager.swift */; };
+		84B7A6D9232026E700AC0DDC /* PresentationContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7A6D8232026E700AC0DDC /* PresentationContentViewController.swift */; };
+		84B7A6DB2320274700AC0DDC /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7A6DA2320274700AC0DDC /* PageViewController.swift */; };
 		84BF9D0423119AF60089FF55 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF9D0323119AF60089FF55 /* MainTableViewController.swift */; };
 		84C5BBBD23114BF00038B011 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */; };
 		84CF00C023111BB200AD8667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF00BF23111BB200AD8667 /* AppDelegate.swift */; };
@@ -25,6 +27,8 @@
 		2040D30C4BBBFAB2E4EF8F82 /* Pods_Birthday_Reminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Birthday_Reminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CF1FCD6E9D4B3E36F52EF8 /* Pods-Birthday Reminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Birthday Reminder.debug.xcconfig"; path = "Target Support Files/Pods-Birthday Reminder/Pods-Birthday Reminder.debug.xcconfig"; sourceTree = "<group>"; };
 		8444345E2311B764007D3DC1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		84B7A6D8232026E700AC0DDC /* PresentationContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PresentationContentViewController.swift; path = "Birthday Reminder/Controller/PresentationContentViewController.swift"; sourceTree = SOURCE_ROOT; };
+		84B7A6DA2320274700AC0DDC /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PageViewController.swift; path = "Birthday Reminder/Controller/PageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		84BF9D0323119AF60089FF55 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		84CF00BC23111BB200AD8667 /* Birthday Reminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Birthday Reminder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,10 +86,12 @@
 		84B7A6D52320258700AC0DDC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				84BF9D0323119AF60089FF55 /* MainTableViewController.swift */,
+				84B7A6D8232026E700AC0DDC /* PresentationContentViewController.swift */,
+				84B7A6DA2320274700AC0DDC /* PageViewController.swift */,
 				84C5BBBC23114BF00038B011 /* CustomTableViewCell.swift */,
-				84CF00C323111BB200AD8667 /* addBirthdayViewController.swift */,
 				84CF879D2314444E0091C1FC /* datesTableViewController.swift */,
+				84CF00C323111BB200AD8667 /* addBirthdayViewController.swift */,
+				84BF9D0323119AF60089FF55 /* MainTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -254,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84C5BBBD23114BF00038B011 /* CustomTableViewCell.swift in Sources */,
+				84B7A6DB2320274700AC0DDC /* PageViewController.swift in Sources */,
 				84CF00C423111BB200AD8667 /* addBirthdayViewController.swift in Sources */,
 				84CF00D82311385600AD8667 /* BirthdayModel.swift in Sources */,
 				84CF879E2314444E0091C1FC /* datesTableViewController.swift in Sources */,
@@ -261,6 +268,7 @@
 				84CF00C023111BB200AD8667 /* AppDelegate.swift in Sources */,
 				84BF9D0423119AF60089FF55 /* MainTableViewController.swift in Sources */,
 				84CF00C223111BB200AD8667 /* SceneDelegate.swift in Sources */,
+				84B7A6D9232026E700AC0DDC /* PresentationContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
