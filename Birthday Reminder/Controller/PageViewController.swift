@@ -27,10 +27,15 @@ class PageViewController: UIPageViewController {
     
     func showViewControllerAtIndex(_ index: Int) -> PresentationContentViewController? {
         
-        guard index >= 0 else {return nil}
-        guard index < 0 presentScreenContent.count else { return nil }
+        guard index >= 0 else { return nil }
+//        guard index < 0 presentScreenContent.count else { return nil }
         guard let contentViewController = storyboard?.instantiateViewController(identifier: "PresentationContentViewController") as? PresentationContentViewController else { return nil }
-
+        
+        contentViewController.presentText = presentScreenContent[index]
+        contentViewController.emoji = emojiArray[index]
+        contentViewController.currentPage = index
+        contentViewController.numberOfPages = presentScreenContent.count
+        
+        return contentViewController
     }
-    
 }
