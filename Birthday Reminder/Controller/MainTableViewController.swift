@@ -11,6 +11,27 @@ import UIKit
  
 class MainTableViewController: UITableViewController {
     
+    //Запуск презентации
+    override func viewDidAppear(_ animated: Bool) { //метод срабатывает сразу после загрузки экрана. Вызов viewcontroller
+        super.viewDidAppear(animated)
+        
+        startPresentation()
+    }
+    func startPresentation() {
+        
+        let userDefauls = UserDefaults.standard
+        let presentationWasViewed = userDefauls.bool(forKey: "presentationWasViewed")
+        if presentationWasViewed == false {
+                    if let pageViewController = storyboard?.instantiateViewController( //создани viewcontroller
+                identifier: "PageViewController")  as? PageViewController {
+                
+                present(pageViewController, animated: true, completion: nil) //отображение viewcontroller
+                        }
+            }
+    }
+    
+    
+    //Стандарт
     private var usersBirthday: Results<Birthday>!
     private var ascendingSorting = true
     

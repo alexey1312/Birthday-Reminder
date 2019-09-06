@@ -24,8 +24,10 @@ class PresentationContentViewController: UIViewController {
 
         presentTextLabel.text = presentText
         emojiLabel.text = emoji
-        pageControl.currentPage = currentPage
+        //сначала присваивается коллличестов страниц
         pageControl.numberOfPages = numberOfPages
+        //номер страницы
+        pageControl.currentPage = currentPage
 
         // Do any additional setup after loading the view.
     }

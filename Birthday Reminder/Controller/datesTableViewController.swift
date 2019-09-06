@@ -9,10 +9,8 @@
 import RealmSwift
 import UIKit
 
-
- 
 class datesTableViewController: UITableViewController {
-    
+
     let items = try! Realm().objects(Birthday.self).sorted(by: ["userFirstName"])
     var sectionNames: [String] {
         return Set(items.value(forKeyPath: "userFirstName") as! [String]).sorted()
@@ -23,7 +21,6 @@ class datesTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
     }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,6 +42,7 @@ class datesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
+
         
         cell.textLabel?.text = items.filter("userFirstName == %@", sectionNames[indexPath.section])[indexPath.row].userBirthDateToString
 
