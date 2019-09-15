@@ -9,65 +9,65 @@
 import UIKit
 
 class PageViewController: UIPageViewController {
-    
-    let presentScreenContent = [
-        "Первая страница презентации",
-        "Вторая страница презентации",
-        "Третья страница презентации",
-        "Четвертая страница презентации",
-        ""
-    ]
-    
-    let emojiArray = ["🙏", "😎", "🤓", "👌", ""]
+        
+        let presentScreenContents = [
+            "Первая страница презентации, расказывающая о том, что наше приложение из себя предсавляет",
+            "Вторая страница презентации, расказывает о какойто удобной фишке приложения",
+            "Третья сраница презентации тоже рассказывает о чем то очень интересном",
+            "Ну и наконец последняя страница презентации с напутствием в добрый путь =)"
+        ]
+        
+        let emojiArray = ["😉", "🤓", "🧐", "👍"]
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        override func viewDidLoad() {
+            super.viewDidLoad()
+
+            dataSource = self
+
+            if let contentPageVC = self.showViewControllerAtIndex(0) {
+                setViewControllers([contentPageVC], direction: .forward, animated: true, completion: nil)
+            }
+        }
         
-        dataSource = self
-        
-        if let contentViewController = showViewControllerAtIndex(0) {
-            setViewControllers([contentViewController], direction: .forward, animated: true, completion: nil)
+        func showViewControllerAtIndex(_ index: Int) -> ContentPageViewController? {
+            
+            guard index >= 0 && index < presentScreenContents.count else {
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(true, forKey: "appAlreadeSeen")
+                dismiss(animated: false, completion: nil)
+                return nil
+            }
+            
+            guard let contentPageViewController = storyboard?.instantiateViewController(
+                withIdentifier: "ContentPageViewController") as? ContentPageViewController else { return nil }
+            
+            contentPageViewController.presenText = presentScreenContents[index]
+            contentPageViewController.emoji = emojiArray[index]
+            contentPageViewController.currentPage = index
+            contentPageViewController.numberOfPages = presentScreenContents.count
+            
+            return contentPageViewController
         }
 
-        // Do any additional setup after loading the view.
     }
-    
-    func showViewControllerAtIndex(_ index: Int) -> PresentationContentViewController? {
-        
-        guard index >= 0 else {
-            let userDefaults = UserDefaults.standard
-            userDefaults.set(true, forKey: "presentationWasViewed")
-            dismiss(animated: true, completion: nil) //метод закрывающий viewcontroller
-            return nil }
-         
-        guard let contentViewController = storyboard?.instantiateViewController(identifier: "PresentationContentViewController") as? PresentationContentViewController else { return nil }
-        
-        contentViewController.presentText = presentScreenContent[index]
-        contentViewController.emoji = emojiArray[index]
-        contentViewController.currentPage = index
-        contentViewController.numberOfPages = presentScreenContent.count
-        
-        return contentViewController
-    }
-}
 
-extension PageViewController: UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    extension PageViewController: UIPageViewControllerDataSource {
         
-        var pageNumber = (viewController as! PresentationContentViewController).currentPage //экземпляр класса PresentationContentViewController
-        pageNumber -= 1
+        // Переход на одну страницу назад
+        func pageViewController(_ pageViewController: UIPageViewController,
+                                viewControllerBefore viewController: UIViewController) -> UIViewController? {
+            
+            var pageNumber = (viewController as! ContentPageViewController).currentPage
+            pageNumber -= 1
+            return showViewControllerAtIndex(pageNumber)
+        }
         
-        return showViewControllerAtIndex(pageNumber)
+        // Перход на одну страницу вперед
+        func pageViewController(_ pageViewController: UIPageViewController,
+                                viewControllerAfter viewController: UIViewController) -> UIViewController? {
+            
+            var pageNumber = (viewController as! ContentPageViewController).currentPage
+            pageNumber += 1
+            return showViewControllerAtIndex(pageNumber)
+        }
     }
-    
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
-                
-        var pageNumber = (viewController as! PresentationContentViewController).currentPage //экземпляр класса PresentationContentViewController
-        pageNumber += 1
-        
-        return showViewControllerAtIndex(pageNumber)
-    }
-  
-}

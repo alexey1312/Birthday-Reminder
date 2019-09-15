@@ -10,28 +10,8 @@ import RealmSwift
 import UIKit
  
 class MainTableViewController: UITableViewController {
-    
-    //Запуск презентации
-    override func viewDidAppear(_ animated: Bool) { //метод срабатывает сразу после загрузки экрана. Вызов viewcontroller
-        super.viewDidAppear(animated)
-        
-        startPresentation()
-    }
-    func startPresentation() {
-        
-        let userDefauls = UserDefaults.standard
-        let presentationWasViewed = userDefauls.bool(forKey: "presentationWasViewed")
-        if presentationWasViewed == false {
-                    if let pageViewController = storyboard?.instantiateViewController( //создани viewcontroller
-                identifier: "PageViewController")  as? PageViewController {
-                
-                present(pageViewController, animated: true, completion: nil) //отображение viewcontroller
-                        }
-            }
-    }
-    
-    
-    //Стандарт
+
+    //Обращение к Realm
     private var usersBirthday: Results<Birthday>!
     private var ascendingSorting = true
     
@@ -54,7 +34,7 @@ class MainTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //Setup search controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -67,6 +47,32 @@ class MainTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
 
     }
+//    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        startPresentation()
+//        if let pageViewController = storyboard?.instantiateViewController(
+//            withIdentifier: "PageViewController") as? PageViewController {
+//            self.present(pageViewController, animated: true, completion: nil)
+//        }
+//    }
+//
+//    // Презентация при первом запуске
+//    func startPresentation() {
+//        
+//        let userDefaults = UserDefaults.standard
+//        let appAlreadeSeen = userDefaults.bool(forKey: "appAlreadeSeen")
+//        
+//        // Отображение PageViewController
+//        
+//        if appAlreadeSeen == false {
+//            if let pageViewController = storyboard?.instantiateViewController(
+//                withIdentifier: "PageViewController") as? PageViewController {
+//                self.present(pageViewController, animated: true, completion: nil)
+//            }
+//        }
+//        
+//    }
     
     // MARK: - Table view data source
 
@@ -197,6 +203,7 @@ class MainTableViewController: UITableViewController {
         //Обновить таблицу
         tableView.reloadData()
     }
+    
 }
 
 //For Search
@@ -221,3 +228,4 @@ extension Date {
         return dateFormatter.date(from: customString) ?? Date()
     }
 }
+
