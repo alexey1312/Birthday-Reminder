@@ -8,10 +8,10 @@
 
 import RealmSwift
 import UIKit
- 
-class MainTableViewController: UITableViewController {
 
-    //Обращение к Realm
+class MainTableViewController: UITableViewController {
+    
+    //GET Realm
     private var usersBirthday: Results<Birthday>!
     private var ascendingSorting = true
     
@@ -30,65 +30,39 @@ class MainTableViewController: UITableViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var reverstSortingButton: UIBarButtonItem!
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Setup search controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search first, last name and date"
         navigationItem.searchController = searchController
-        definesPresentationContext = true //Опусить строку поиска при переходе на другой экран
-
-
+        definesPresentationContext = true //Omit the search bar when switching to another screen
+        
+        
         usersBirthday = realm.objects(Birthday.self)
-        tableView.tableFooterView = UIView()//Где нет коннтента убирает разделителей полей
-
+        tableView.tableFooterView = UIView()//Where no content removes field separators
+        
     }
-//    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        startPresentation()
-//        if let pageViewController = storyboard?.instantiateViewController(
-//            withIdentifier: "PageViewController") as? PageViewController {
-//            self.present(pageViewController, animated: true, completion: nil)
-//        }
-//    }
-//
-//    // Презентация при первом запуске
-//    func startPresentation() {
-//        
-//        let userDefaults = UserDefaults.standard
-//        let appAlreadeSeen = userDefaults.bool(forKey: "appAlreadeSeen")
-//        
-//        // Отображение PageViewController
-//        
-//        if appAlreadeSeen == false {
-//            if let pageViewController = storyboard?.instantiateViewController(
-//                withIdentifier: "PageViewController") as? PageViewController {
-//                self.present(pageViewController, animated: true, completion: nil)
-//            }
-//        }
-//        
-//    }
     
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if isFiltering {
-                 return filtredUsersBirthday.count
-             }
+            return filtredUsersBirthday.count
+        }
         
         return usersBirthday.isEmpty ? 0: usersBirthday.count
     }
-
-
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
- 
+        
         var userBirthday = Birthday()
         
         if isFiltering {
@@ -96,34 +70,34 @@ class MainTableViewController: UITableViewController {
         } else {
             userBirthday = usersBirthday[indexPath.row]
         }
-
-        //Конвертация даты
+        
+        //Date converseion
         let userBirthdayDate = userBirthday.userBirthDate
         let dateForamaterDate = DateFormatter()
         let dateFormatreWeekDay = DateFormatter()
-
+        
         dateForamaterDate.dateFormat = "yyyy-MM-dd"
         dateFormatreWeekDay.dateFormat = "EEEE"
         
         let dateValueDate = dateForamaterDate.string(from: userBirthdayDate!)
         let dateValueWeekDay = dateFormatreWeekDay.string(from: userBirthdayDate!)
-         
+        
         let capitalizedDate = dateValueDate.capitalized
         let capitalizedWeekday = dateValueWeekDay.capitalized
         let fullDate = "\(capitalizedWeekday) \(capitalizedDate)"
-
+        
         cell.labelName.text = userBirthday.userfullName
         cell.labelDate.text = fullDate
         
         cell.PhotoUserImage.image = UIImage(data: userBirthday.userImageData!)
         cell.PhotoUserImage.layer.cornerRadius = cell.frame.size.height / 3
-
+        
         return cell
     }
- 
-       //MARK: Table view delegate
-       
-       //Добавление свайпа с права на лево для удаления ячеек
+    
+    //MARK: Table view delegate
+    
+    //Adding a swipe from right to left to delete cells
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let userBirthday = usersBirthday[indexPath.row]
@@ -133,7 +107,7 @@ class MainTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath],
                                  with: .automatic)
         }
-               
+        
         let deleteAction = UISwipeActionsConfiguration.init(actions: [action])
         
         // Remove notification
@@ -143,11 +117,11 @@ class MainTableViewController: UITableViewController {
         }
         
         return deleteAction
-       }
-
-
+    }
+    
+    
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail"{
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -164,7 +138,7 @@ class MainTableViewController: UITableViewController {
             newBirthdayVC.currentBirthday = birthday
         }
     }
-
+    
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         
         guard let newBirthdayVC = segue.source as? addBirthdayViewController else { return }
@@ -200,7 +174,7 @@ class MainTableViewController: UITableViewController {
             usersBirthday = usersBirthday.sorted(byKeyPath: "userBirthDate", ascending: ascendingSorting)
         }
         
-        //Обновить таблицу
+        //reload table
         tableView.reloadData()
     }
     
@@ -209,10 +183,10 @@ class MainTableViewController: UITableViewController {
 //For Search
 extension MainTableViewController: UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
-    
+        
         _ = filterContentForSearchText(searchController.searchBar.text!)
     }
-
+    
     private func filterContentForSearchText(_ searchText: String){
         
         filtredUsersBirthday = usersBirthday.filter("userFirstName CONTAINS[c] %@ OR userLastName CONTAINS[c]  %@ OR userBirthDateToString CONTAINS[c]  %@", searchText, searchText, searchText)
