@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class Birthday: Object {
-    
+
     @objc dynamic var userFirstName: String? = ""
     @objc dynamic var userLastName: String? = ""
     @objc dynamic var userfullName: String?
@@ -19,7 +19,7 @@ class Birthday: Object {
     @objc dynamic var userBirthDateToString: String?
     @objc dynamic var userDateCreate = Date()
     @objc dynamic var userBirthdayId = UUID().uuidString
-    
+
     convenience init (userFirstName: String?, userLastName: String?, userBirthDate: Date?, userImageData: Data?) {
         self.init()
         self.userFirstName = userFirstName

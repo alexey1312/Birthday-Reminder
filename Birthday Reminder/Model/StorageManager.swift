@@ -11,15 +11,15 @@ import RealmSwift
 let realm = try! Realm()
 
 class StorageManager {
-    
+
     static func saveObject(_ birthday: Birthday) {
-        
+
         try! realm.write {
-            realm.add(birthday) 
+            realm.add(birthday)
         }
     }
-    
-    static func deleteObject(_ place: Birthday){
+
+    static func deleteObject(_ place: Birthday) {
         try! realm.write {
             realm.delete(place)
         }

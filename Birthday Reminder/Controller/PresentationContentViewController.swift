@@ -13,12 +13,12 @@ class ContentPageViewController: UIViewController {
     @IBOutlet weak var presentTextLabel: UILabel!
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
-    
+
     var presentText = ""
     var emoji = ""
     var currentPage = 0 // Номер текущей страницы
     var numberOfPages = 0 // Номер страницы
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -9,8 +9,8 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var PhotoUserImage: UIImageView!
+
+    @IBOutlet weak var photoUserImage: UIImageView!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelName: UILabel!
 }
